@@ -2,10 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Home from './Pages/Home';
 import reportWebVitals from './reportWebVitals';
+import { AppProvider } from './context/AppContext'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Home />
+    <AppProvider>
+      <Home />
+    </AppProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
