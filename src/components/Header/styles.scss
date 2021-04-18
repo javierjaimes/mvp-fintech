@@ -1,0 +1,41 @@
+.header{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: flex-start;
+
+  padding: 1rem;
+}
+
+.branding{
+  order: 0;
+  flex: 0 1 auto;
+  align-self: auto;
+
+  &.name{
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 25px;
+    letter-spacing: 0.8px;
+    word-spacing: 0px;
+    color: #BC2053;
+    font-weight: 700;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: uppercase;      
+  }
+}
+
+.search{
+  order: 0;
+  flex: 1 1 auto;
+  align-self: auto;
+}
+
+.user{
+  order: 0;
+  flex: 0 1 auto;
+  align-self: auto;
+}
