@@ -4,7 +4,7 @@ import Content from '../../components/Content'
 
 export default function Home() {
   return (
-    <div>
+    <div className="container">
       <Header />
       <Content />
     </div>

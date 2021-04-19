@@ -4,6 +4,8 @@ import Home from './Pages/Home';
 import reportWebVitals from './reportWebVitals';
 import { AppProvider } from './context/AppContext'
 
+import './styles.scss'
+
 ReactDOM.render(
   <React.StrictMode>
     <AppProvider>
