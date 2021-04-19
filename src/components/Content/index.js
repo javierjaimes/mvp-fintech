@@ -15,5 +15,19 @@ export default function Content(){
     !fetched && updateData()
   }, [list, setList, MVP, fetched])
 
-  return <ContentComp list={list} fetched={fetched} />
+  const checkNRS = async (nin) => {
+    const data = await MVP.checkNRS(nin)
+    return data.length > 0
+  }
+
+  const checkJRS = async (nin) => {
+    const data = await MVP.checkJRS(nin)
+    return data.length > 0
+  }
+
+  const checkScore = () => {
+    return Math.random(0, 100)
+  }
+
+  return <ContentComp {...{list, fetched, checkNRS, checkJRS, checkScore}}  />
 }

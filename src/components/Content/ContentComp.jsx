@@ -1,7 +1,12 @@
 import React from 'react'
+import Sidebar from '../Sidebar'
 import './styles.scss'
 
-export default function ContentComp({list, fetched}) {
+export default function ContentComp({list, fetched, checkNRS, checkJRS, checkScore}) {
+  const checkHandler = (nin) => {
+
+  }
+
   const content = fetched ? (
     <div className="table">
       <div className="row">
@@ -13,7 +18,7 @@ export default function ContentComp({list, fetched}) {
         </div>
       {list.map(user => (
         <div className="row" key={user.id}>
-          <div className="field">status</div>
+          <div className="field"><button onClick={() => checkHandler(user.nin)}>Check</button></div>
           <div className="field">{user.firstname}</div>
           <div className="field">{user.lastname}</div>
           <div className="field">{user.phone}</div>
@@ -28,6 +33,7 @@ export default function ContentComp({list, fetched}) {
   return (
     <div className="container">
       {content}
+      <Sidebar />
     </div>
   )
 }

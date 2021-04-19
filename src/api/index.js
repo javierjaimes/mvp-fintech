@@ -18,9 +18,21 @@ const getCompanyList = () => {
   return retrieveData(API.crm)
 }
 
+//retrieve a user from NRS using their NIN
+const checkNRS = (nin) => {
+  return retrieveData(`${API.nrs}?nin=${nin}}`)
+}
+
+//retrieve a user from JRS using their NIN
+const checkJRS = (nin) => {
+  return retrieveData(`${API.jrs}?nin=${nin}}`)
+}
+
 // encapsulated methods
 const MVP = {
-  getList: getCompanyList
+  getList: getCompanyList,
+  checkNRS: (nin) => checkNRS(nin),
+  checkJRS: (nin) => checkJRS(nin)
 }
 
 export default MVP;
