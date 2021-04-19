@@ -23,6 +23,8 @@ export default function Content(){
   }, [list, setList, MVP, fetched])
 
   const checkHandler = async (nin) => {
+    setVisible(true)
+
     const nrs = await MVP.checkNRS(nin)
     const jrs = await MVP.checkJRS(nin)
     const score = nrs.length === 1 && jrs.length === 0 && (Math.floor(Math.random() * 100)+1)
@@ -35,5 +37,5 @@ export default function Content(){
     })
   }
 
-  return <ContentComp {...{list, fetched, checkHandler, state, visible}}  />
+  return <ContentComp {...{list, fetched, checkHandler, state, visible, setVisible}}  />
 }

@@ -49,7 +49,9 @@ export default function ContentComp({list, fetched, checkHandler, state, visible
 
   return (
     <div className="container">
-      {content}
+      <div>
+        {content}
+      </div>
       <Sidebar {...{content: statusContent, visible, setVisible}}/>
     </div>
   )
