@@ -2,11 +2,7 @@ import React from 'react'
 import Sidebar from '../Sidebar'
 import './styles.scss'
 
-export default function ContentComp({list, fetched, checkNRS, checkJRS, checkScore}) {
-  const checkHandler = (nin) => {
-
-  }
-
+export default function ContentComp({list, fetched, checkHandler, state, visible, setVisible}) {
   const content = fetched ? (
     <div className="table">
       <div className="row">
@@ -30,10 +26,31 @@ export default function ContentComp({list, fetched, checkNRS, checkJRS, checkSco
     <div>Loading</div>
     )
 
+  const getResult = () => {
+    if(state.checkCompleted){
+      return state.score > 60 ? 'Prospect!' : 'Not Prospect :('
+    }else{
+      return 'Pending...'
+    }
+  }
+
+  const statusContent = (
+    <div className="status">
+      <div>The following is an automated check to validate if the contact could be a prospect</div>
+      <ul>
+        <li>National Registry System: {state.checkCompleted && state.nrs ? 'OK' : 'Not Registered'}</li>
+        <li>Judicial Records System: {state.checkCompleted && state.jrs ? 'OK' : 'With Records'}</li>
+        <li>Score System: {state.score}</li>
+        <li>Status: {state.checkCompleted ? 'Completed' : 'In progress...'}</li>
+        <li>Result: {getResult()}</li>
+      </ul>
+    </div>
+  )
+
   return (
     <div className="container">
       {content}
-      <Sidebar />
+      <Sidebar {...{content: statusContent, visible, setVisible}}/>
     </div>
   )
 }

@@ -5,6 +5,13 @@ import ContentComp from './ContentComp'
 export default function Content(){
   const { list, setList, MVP } = useContext(AppContext)
   const [fetched, setFetched] = useState(false)
+  const [state, setState] = useState({
+    nrs: false,
+    jrs: false,
+    score: false,
+    checkCompleted: false
+  });
+  const [visible, setVisible] = useState(false)
 
   useEffect(() => {
     const updateData = async () => {
@@ -15,19 +22,18 @@ export default function Content(){
     !fetched && updateData()
   }, [list, setList, MVP, fetched])
 
-  const checkNRS = async (nin) => {
-    const data = await MVP.checkNRS(nin)
-    return data.length > 0
+  const checkHandler = async (nin) => {
+    const nrs = await MVP.checkNRS(nin)
+    const jrs = await MVP.checkJRS(nin)
+    const score = nrs.length === 1 && jrs.length === 0 && (Math.floor(Math.random() * 100)+1)
+    
+    setState({
+      nrs: nrs.length === 1,
+      jrs: jrs.length === 0,
+      score,
+      checkCompleted: true
+    })
   }
 
-  const checkJRS = async (nin) => {
-    const data = await MVP.checkJRS(nin)
-    return data.length > 0
-  }
-
-  const checkScore = () => {
-    return Math.random(0, 100)
-  }
-
-  return <ContentComp {...{list, fetched, checkNRS, checkJRS, checkScore}}  />
+  return <ContentComp {...{list, fetched, checkHandler, state, visible}}  />
 }
